@@ -9,6 +9,7 @@ import java.util.List;
  *
  */
 public class Item {
+
 	/** ID */
 	private Integer id;
 	/** 商品名 */

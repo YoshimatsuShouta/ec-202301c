@@ -49,7 +49,7 @@ public class Order {
 	public int getCalcTotalPrice() {
 		int totalPrice = 0;
 		for (OrderItem orderItem : getOrderItemList()) {
-			totalPrice += orderItem.getSubTotalPrice()*1.1;
+			totalPrice += orderItem.getSubTotalPrice() * 1.1;
 
 		}
 		return totalPrice;
@@ -190,4 +190,5 @@ public class Order {
 				+ destinationAddress + ", destinationTel=" + destinationTel + ", deliveryTime=" + deliveryTime
 				+ ", paymentMethod=" + paymentMethod + ", user=" + user + ", orderItemList=" + orderItemList + "]";
 	}
+
 }

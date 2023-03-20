@@ -23,9 +23,6 @@ public class ShowItemListController {
 
 	@Autowired
 	private ShowItemListService showItemListService;
-	
-	// 1ページに表示する商品数は6枚
-		private static final int VIEW_SIZE = 6;
 
 	/**
 	 * 商品一覧画面に遷移.

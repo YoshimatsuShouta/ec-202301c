@@ -10,7 +10,6 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
-import com.example.domain.Item;
 import com.example.domain.Topping;
 
 /**
@@ -41,7 +40,7 @@ public class ToppingRepository {
 
 		return ToppingList;
 	}
-	
+
 	/**
 	 * 主キー検索を行います.
 	 * 
@@ -49,7 +48,7 @@ public class ToppingRepository {
 	 * @return 検索された商品情報(検索されなかった場合は非検査例外が発生します)
 	 */
 	public Topping load(Integer id) {
-		String sql = "SELECT id,name,price_m,price_l FROM toppings WHERE id =:id;;";
+		String sql = "SELECT id,name,price_m,price_l FROM toppings WHERE id =:id;";
 
 		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
 

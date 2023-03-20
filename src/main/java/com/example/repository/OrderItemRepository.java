@@ -3,7 +3,6 @@ package com.example.repository;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -53,8 +52,7 @@ public class OrderItemRepository {
 			KeyHolder keyHolder = new GeneratedKeyHolder();
 			String[] keyColumnNames = { "id" };
 			template.update(insertSql, param, keyHolder, keyColumnNames);
-			orderItem.setId(keyHolder.getKey().intValue());
-			System.out.println(keyHolder.getKey() + "が割り当てられました");
+			orderItem.setId((Integer) keyHolder.getKey());
 		}
 		return orderItem;
 	}

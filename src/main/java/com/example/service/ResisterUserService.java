@@ -27,7 +27,6 @@ public class ResisterUserService {
 	 */
 
 	public void resisterUser(UserInfo user) {
-		System.out.println("userの中身:" + user);
 
 		userRepository.save(user);
 	}
@@ -37,4 +36,5 @@ public class ResisterUserService {
 		return user;
 
 	}
+
 }

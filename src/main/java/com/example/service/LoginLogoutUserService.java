@@ -1,5 +1,7 @@
 package com.example.service;
 
+import java.util.Objects;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -31,11 +33,11 @@ public class LoginLogoutUserService {
 	 * 
 	 */
 	public UserInfo login(LoginLogoutUserForm form) {
-		UserInfo user = userReposiory.findByEmail(form.getEmail());
 
-		if (!passwordEncoder.matches(form.getPassword(), user.getPassword())) {
+		UserInfo user = userReposiory.findByEmail(form.getEmail());
+		if (Objects.isNull(user)) {
 			return null;
 		}
-		return user;
+		return passwordEncoder.matches(form.getPassword(), user.getPassword()) ? user : null;
 	}
 }

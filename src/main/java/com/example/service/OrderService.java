@@ -31,11 +31,10 @@ public class OrderService {
 	 * @return 注文情報
 	 */
 	public Order order(OrderForm form) {
-		Order order = orderRepository.load(Integer.parseInt(form.getId()));
-		
+		Order order = orderRepository.load(form.getId());
 		java.sql.Date today = new java.sql.Date(new Date().getTime());
 		order.setOrderDate(today);
-		order.setStatus(form.getPaymentMethod());
+		order.setStatus(2);
 		order.setTotalPrice(order.getCalcTotalPrice());
 		order.setDestinationName(form.getDestinationName());
 		order.setDestinationEmail(form.getDestinationEmail());
@@ -46,7 +45,6 @@ public class OrderService {
 
 		try {
 			final String yyyyMMddhh = form.getDeliveryDate() + "-" + form.getDeliveryTime();
-			System.out.println("yyyyMMddhh:" + yyyyMMddhh);
 			Date deliveryTime = new SimpleDateFormat("yyyy-MM-dd-hh").parse(yyyyMMddhh);
 			Timestamp deliveryDateTimestamp = new Timestamp(deliveryTime.getTime());
 			order.setDeliveryTime(deliveryDateTimestamp);

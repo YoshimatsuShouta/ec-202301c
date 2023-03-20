@@ -31,7 +31,8 @@ public class SecurityConfig {
 
 		http.authorizeHttpRequests() // 認可に関する設定
 				.requestMatchers("/Login/toLogin", "/resister/resisterUser", "/resister/toResister", "/findByName", "/",
-						"/ShowItemDetail/ToItemDetail")
+						"/ShowItemDetail/ToItemDetail", "/orderCon/toOrderConfirm", "/orderCon/toFinished",
+						"/orderCon/order")
 				.permitAll() // 「/」などのパスは全てのユーザに許可
 				// .requestMatchers("/admin/**").hasRole("ADMIN") //
 				// /admin/から始まるパスはADMIN権限でログインしている場合のみアクセス可(権限設定時の「ROLE_」を除いた文字列を指定)

@@ -13,7 +13,7 @@ import jakarta.validation.constraints.Pattern;
  */
 public class OrderForm {
 	/** id */
-	private String id;
+	private Integer id;
 	/** 注文状態 */
 	private Integer status;
 	/** 合計金額 */
@@ -23,6 +23,7 @@ public class OrderForm {
 	private String destinationName;
 	/** 宛先Eメール */
 	@Email(message = "メールアドレスの形式が不正です")
+	@NotBlank(message = "メールアドレスを入力してください")
 	private String destinationEmail;
 	/** 宛先郵便番号 */
 	@Pattern(regexp = "^[0-9]{3}-[0-9]{4}$", message = "郵便番号形式にしてください")
@@ -42,14 +43,6 @@ public class OrderForm {
 	private Integer deliveryTime;
 	/** 支払い方法 */
 	private Integer paymentMethod;
-
-	public Integer getIntId() {
-		return Integer.parseInt(id);
-	}
-
-	public Integer getStatus() {
-		return status;
-	}
 
 	public void setStatus(Integer status) {
 		this.status = status;
@@ -111,11 +104,11 @@ public class OrderForm {
 		this.paymentMethod = paymentMethod;
 	}
 
-	public String getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

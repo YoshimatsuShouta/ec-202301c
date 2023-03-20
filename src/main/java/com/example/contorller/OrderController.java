@@ -52,8 +52,7 @@ public class OrderController {
 		form.setDestinationAddress(user.getAddress());
 		form.setDestinationZipcode(user.getZipcode());
 		form.setDestinationTel(user.getTelephone());
-		
-		
+
 		Order orderList = orderConfirmService.GetOrderId(orderId);
 		model.addAttribute("order", orderList);
 		return "/materialize-version/order_confirm";
@@ -79,9 +78,8 @@ public class OrderController {
 		}
 
 		if (result.hasErrors()) {
-			System.out.println("エラー時" + form.getIntId());
 
-			return orderConfirm(form, form.getIntId(), model, loginUser);
+			return orderConfirm(form, form.getId(), model, loginUser);
 		}
 
 		LocalDateTime nowLocalDateTime = LocalDateTime.now();
@@ -102,7 +100,7 @@ public class OrderController {
 		}
 
 		if (result.hasErrors()) {
-			return orderConfirm(form, form.getIntId(), model, loginUser);
+			return orderConfirm(form, form.getId(), model, loginUser);
 
 		}
 		orderService.order(form);

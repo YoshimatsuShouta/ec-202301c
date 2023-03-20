@@ -2,9 +2,7 @@ package com.example.repository;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,15 +21,6 @@ class UserRepositoryTest {
 	@Autowired
 	private NamedParameterJdbcTemplate template;
 
-	@BeforeAll
-	static void setUpBeforeClass() throws Exception {
-
-	}
-
-	@AfterAll
-	static void tearDownAfterClass() throws Exception {
-	}
-
 	@BeforeEach
 	void testSave() throws Exception {
 		System.out.println("DB初期化処理開始");
@@ -42,7 +31,9 @@ class UserRepositoryTest {
 		user.setZipcode("123-4567");
 		user.setAddress("dummy県");
 		user.setTelephone("123-4566-7890");
+
 		userRepository.save(user);
+
 		System.out.println("インサートが完了しました。");
 
 		System.out.println("DB初期化処理終了");
@@ -77,7 +68,7 @@ class UserRepositoryTest {
 		assertEquals("dummy県", resultUserInfo.getAddress(), "住所が登録されていません");
 		assertEquals("123-4566-7890", resultUserInfo.getTelephone(), "電話番号が登録されていません");
 
-		System.out.println("メールアドレスで検索するテスト開始");
+		System.out.println("メールアドレスで検索するテスト終了");
 	}
 
 	@AfterEach

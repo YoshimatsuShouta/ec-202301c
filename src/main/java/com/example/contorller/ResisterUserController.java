@@ -82,7 +82,7 @@ public class ResisterUserController {
 		user.setTelephone(form.getTelephone());
 		model.addAttribute("user", user);
 		resisterUserService.resisterUser(user);
-		return "redirect:/toLogin";
+		return "redirect:/Login/toLogin";
 	}
 
 }

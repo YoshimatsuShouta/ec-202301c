@@ -35,31 +35,28 @@ public class OrderItem {
 		int subtotalM = 0;
 		int nulltotalL = 0;
 		int nulltotalM = 0;
-			System.out.println(this.getOrderToppingList().size());
-			
-			
-			if (this.getOrderToppingList().isEmpty() && this.size.equals("L")) {
-				nulltotalL = this.quantity * this.item.getPriceL(); 
-				return nulltotalL;
-			
-		    }else if (this.size.equals("L")) {
 
-				subtotalL = (this.quantity * this.item.getPriceL())
-						+ (this.quantity * (this.getOrderToppingList().size() * 300));
-				return subtotalL;
+		if (this.getOrderToppingList().isEmpty() && this.size.equals("L")) {
+			nulltotalL = this.quantity * this.item.getPriceL();
+			return nulltotalL;
 
-			} 
-			
-			if (this.getOrderToppingList().isEmpty() && this.size.equals("M")) {
-				nulltotalM = this.quantity * this.item.getPriceM();
-				return nulltotalM;
-			} else if(this.size.equals("M")){
-				subtotalM = (this.quantity * this.item.getPriceM())
-						+ (this.quantity * (this.getOrderToppingList().size() * 200));
-				return subtotalM;
-			}
+		} else if (this.size.equals("L")) {
 
-		
+			subtotalL = (this.quantity * this.item.getPriceL())
+					+ (this.quantity * (this.getOrderToppingList().size() * 300));
+			return subtotalL;
+
+		}
+
+		if (this.getOrderToppingList().isEmpty() && this.size.equals("M")) {
+			nulltotalM = this.quantity * this.item.getPriceM();
+			return nulltotalM;
+		} else if (this.size.equals("M")) {
+			subtotalM = (this.quantity * this.item.getPriceM())
+					+ (this.quantity * (this.getOrderToppingList().size() * 200));
+			return subtotalM;
+		}
+
 		return 0;
 	}
 

@@ -1,6 +1,5 @@
 package com.example.service;
 
-
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +12,6 @@ import com.example.form.ShoppingCartForm;
 import com.example.repository.OrderItemRepository;
 import com.example.repository.OrderRepository;
 import com.example.repository.OrderToppingRepository;
-
 
 /**
  * カート関連サービス.
@@ -43,39 +41,32 @@ public class ShoppingCartService {
 	 */
 	public void insertCat(ShoppingCartForm form, Integer userId) {
 		Order order = orderRepository.findByUserIdAndStatus(userId, 0);
-		Order orderObject = new Order();
 		// オーダーテーブルにユーザー情報がない場合注文テーブにインサート
 		if (order == null) {
+			Order orderObject = new Order();
 			orderObject.setUserId(userId);
 			orderObject.setStatus(0);
 			orderObject.setTotalPrice(0);
-			orderRepository.insert(orderObject);
+			order = orderRepository.insert(orderObject);
 		}
-        //注文商品へインサート
+		// 注文商品へインサート
 		OrderItem orderItem = new OrderItem();
 		BeanUtils.copyProperties(form, orderItem);
 
-		if (order != null) {
-			orderItem.setOrderId(order.getId());
+		orderItem.setOrderId(order.getId());
 
-		} else {
-			orderItem.setOrderId(orderObject.getId());
-		}
-		OrderItem orderItemInfo = orderitemRepository.insert(orderItem);
-		
-		
+		orderItem = orderitemRepository.insert(orderItem);
+
 		// 注文トッピングインサート, nullの時はインサートなし
 		OrderTopping orderTopping = new OrderTopping();
 		if (form.getToppingIdList() != null) {
 			for (Integer t : form.getToppingIdList()) {
 				orderTopping.setToppingId(t);
-				orderTopping.setOrderItemId(orderItemInfo.getId());
+				orderTopping.setOrderItemId(orderItem.getId());
 				orderToppingRepository.insert(orderTopping);
 			}
 		}
 	}
-
-	
 
 	/**
 	 * カートに中身表示サービス.
@@ -85,18 +76,18 @@ public class ShoppingCartService {
 	 */
 	public Order showCart(Integer userId) {
 		Order order = orderRepository.findByUserIdAndStatus(userId, 0);
-		//注文デーブルにインサートなしでカートの中身をみた時
-		Order orderObject = new Order();
 		if (order == null) {
+			// 注文デーブルにインサートなしでカートの中身をみた時
+			Order orderObject = new Order();
 			orderObject.setUserId(userId);
 			orderObject.setStatus(0);
 			orderObject.setTotalPrice(0);
-			orderRepository.insert(orderObject);
+			order = orderRepository.insert(orderObject);
 		}
-		return orderRepository.findByUserIdAndStatus(userId, 0);
+		return order;
 
 	}
-	
+
 	/**
 	 * 注文商品削除.
 	 * 

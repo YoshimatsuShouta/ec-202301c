@@ -1,7 +1,5 @@
 package com.example.domain;
 
-import java.util.List;
-
 /**
  * 注文トッピングに関するドメイン.
  * 
@@ -16,7 +14,7 @@ public class OrderTopping {
 	/** 注文商品ID */
 	private Integer orderItemId;
 	/** トッピング */
-	private Topping  topping;
+	private Topping topping;
 
 	public Integer getId() {
 		return id;

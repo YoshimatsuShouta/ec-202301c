@@ -27,7 +27,6 @@ public class OrderConfirmController {
 
 		model.addAttribute("order", orderList);
 		model.addAttribute(user);
-		System.out.println(orderList);
 
 		return "/materialize-version/order_confirm";
 	}
